@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: screen-recorder-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+    disk:
+      name: recordings-disk
+      mountPath: /opt/render/project/src/backend/uploads
+      sizeGB: 1
